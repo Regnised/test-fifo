@@ -32,5 +32,7 @@ Response function was changed (res._end) to unify all responses
 
 You can test every API request using this link https://test-store1.herokuapp.com/docs/
 
-
-
+# Use
+https://test-store1.herokuapp.com - UI (Angular 6)
+https://test-store1.herokuapp.com/docs/ - API doc
+https://test-store1.herokuapp.com/api-docs/ - API doc
