@@ -10,7 +10,7 @@ import { PenService } from '../pen.service';
 })
 export class HeroesComponent implements OnInit {
   data: any;
-  pens: any;
+  pens: any = [];
   transactions: any;
 
   constructor(private penService: PenService) { }
@@ -51,6 +51,14 @@ export class HeroesComponent implements OnInit {
     let arg2 = parseInt(quantity);
     this.penService.sellBallpen({'cost': arg1, 'quantity': arg2})
       .subscribe(pen => {
+        this.getPens();
+        this.getTransactions();
+      });
+  }
+
+  clear(): void {
+    this.penService.clearDB()
+      .subscribe(data => {
         this.getPens();
         this.getTransactions();
       });

@@ -1,4 +1,11 @@
+
 <h2>My Ballpens</h2>
+<p>
+  <button (click)="clear()">
+    Clear DB
+  </button>
+</p>
+
 
 <div style="width: 50%; margin: 0 auto; text-align: left; float: left">
   <label>Buy
@@ -13,10 +20,10 @@
 <div style="width: 50%; margin: 0 auto; text-align: left; float: left; border-top: 1px solid black;">
   <label>Sell
     <br>
-    Quantity: <input type="number" #penQuantity />
-    Cost: <input type="number" #penCost />
+    Quantity: <input type="number" #penQuantity2 />
+    Cost: <input type="number" #penCost2 />
   </label>
-  <button (click)="sell(penCost.value, penQuantity.value); penCost.value=''; penQuantity.value=''">
+  <button (click)="sell(penCost2.value, penQuantity2.value); penCost.value=''; penQuantity.value=''">
     sell
   </button>
 </div>

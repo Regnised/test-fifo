@@ -3,7 +3,7 @@ info:
   version: "0.0.2"
   title: VirtuProfs
 basePath: /api
-# host: localhost:3000
+host: localhost:3000
 schemes:
   - http
   - https
@@ -95,6 +95,18 @@ paths:
       summary: Get all goods
       tags:
         - Goods
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Response"
+  /dropdb:
+    x-swagger-router-controller: AdminController
+    delete:
+      operationId: clearDatabase
+      summary: Clear DB
+      tags:
+        - db
       responses:
         "200":
           description: Successful response

@@ -54,6 +54,14 @@ export class PenService {
       );
   }
 
+  clearDB(): Observable<any> {
+    return this.http.delete<any>(`${this.pensUrl}/api/dropdb`)
+      .pipe(
+        tap(pens => this.log('Clean DB')),
+        catchError(this.handleError('clear DB', []))
+      );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
