@@ -3,7 +3,7 @@ info:
   version: "0.0.2"
   title: VirtuProfs
 basePath: /api
-#host: localhost:3000
+host: localhost:3000
 schemes:
   - http
   - https
@@ -83,6 +83,18 @@ paths:
       summary: Get all transactions (logs)
       tags:
         - transactions
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Response"
+  /goods:
+    x-swagger-router-controller: GoodsController
+    get:
+      operationId: getGoods
+      summary: Get all goods
+      tags:
+        - Goods
       responses:
         "200":
           description: Successful response

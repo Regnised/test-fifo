@@ -4,7 +4,8 @@ const ServiceError = require('../../config/error.config');
 
 module.exports = {
     buyGoods: buyGoods,
-    sellGoods: sellGoods
+    sellGoods: sellGoods,
+    getGoods: getGoods
 };
 
 function buyGoods(req, res) {
@@ -53,6 +54,15 @@ function sellGoods(req, res) {
             res._end({success: true});
         });
 
+}
+
+function getGoods(req, res) {
+    Goods.find()
+        .exec((err, goods) => {
+            if (err) return res._end(new ServiceError(err.message, ServiceError.STATUS.INTERNAL_SERVER_ERROR, ServiceError.CODE.ERROR_SAVE_TO_DB))
+
+            res._end({'goods': goods})
+        })
 }
 
 function updateGoods(id, goods) {

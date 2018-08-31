@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { Pen } from '../pen';
+import { PenService } from '../pen.service';
 
 @Component({
   selector: 'app-heroes',
@@ -9,31 +9,51 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  heroes: Hero[];
+  data: any;
+  pens: any;
+  transactions: any;
 
-  constructor(private heroService: HeroService) { }
+  constructor(private penService: PenService) { }
 
   ngOnInit() {
-    this.getHeroes();
+    this.getPens();
+    this.getTransactions();
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
-    .subscribe(heroes => this.heroes = heroes);
+  getPens(): void {
+    this.penService.getPens()
+    .subscribe(data => {
+      console.log(data);
+      this.pens = data.data.goods
+    });
   }
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.heroService.addHero({ name } as Hero)
-      .subscribe(hero => {
-        this.heroes.push(hero);
+  getTransactions(): void {
+    this.penService.getTransactions()
+      .subscribe(data => {
+        console.log(data);
+        this.transactions = data.data.transactions
       });
   }
 
-  delete(hero: Hero): void {
-    this.heroes = this.heroes.filter(h => h !== hero);
-    this.heroService.deleteHero(hero).subscribe();
+  buy(cost: string, quantity: string): void {
+    let arg1 = parseFloat(cost);
+    let arg2 = parseInt(quantity);
+    this.penService.addBallpen({'cost': arg1, 'quantity': arg2})
+      .subscribe(pen => {
+        this.pens.push(pen.data);
+        this.getTransactions();
+      });
+  }
+
+  sell(cost: string, quantity: string): void {
+    let arg1 = parseFloat(cost);
+    let arg2 = parseInt(quantity);
+    this.penService.sellBallpen({'cost': arg1, 'quantity': arg2})
+      .subscribe(pen => {
+        this.getPens();
+        this.getTransactions();
+      });
   }
 
 }

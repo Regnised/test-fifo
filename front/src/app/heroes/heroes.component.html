@@ -1,21 +1,64 @@
-<h2>My Heroes</h2>
+<h2>My Ballpens</h2>
 
-<div>
-  <label>Hero name:
-    <input #heroName />
+<div style="width: 50%; margin: 0 auto; text-align: left; float: left">
+  <label>Buy
+    <br>
+    Quantity: <input type="number" #penQuantity />
+    Cost: <input type="number" #penCost />
   </label>
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(heroName.value); heroName.value=''">
-    add
+  <button (click)="buy(penCost.value, penQuantity.value); penCost.value=''; penQuantity.value=''">
+    buy
+  </button>
+</div>
+<div style="width: 50%; margin: 0 auto; text-align: left; float: left; border-top: 1px solid black;">
+  <label>Sell
+    <br>
+    Quantity: <input type="number" #penQuantity />
+    Cost: <input type="number" #penCost />
+  </label>
+  <button (click)="sell(penCost.value, penQuantity.value); penCost.value=''; penQuantity.value=''">
+    sell
   </button>
 </div>
 
-<ul class="heroes">
-  <li *ngFor="let hero of heroes">
-    <a routerLink="/detail/{{hero.id}}">
-      <span class="badge">{{hero.id}}</span> {{hero.name}}
-    </a>
-    <button class="delete" title="delete hero"
-      (click)="delete(hero)">x</button>
-  </li>
-</ul>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <td>Date</td>
+    <td>Quantity</td>
+    <td>Cost per pen</td>
+    <td>Sold</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let pen of pens" >
+    <td> {{pen.createdAt.toString()}}</td>
+    <td> {{pen.quantity}}</td>
+    <td> {{pen.cost}}</td>
+    <td> {{pen.sold}}</td>
+  </tr>
+  </tbody>
+</table>
+<table class="table table-hover transactions">
+  <thead>
+  <tr>
+    <td>Date</td>
+    <td>ID</td>
+    <td>Transaction type</td>
+    <td>Goods ID</td>
+    <td>Quantity</td>
+    <td>Cost per pen</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let transaction of transactions" >
+    <td> {{transaction.createdAt}}</td>
+    <td> {{transaction._id}}</td>
+    <td> {{transaction.transactionType}}</td>
+    <td> {{transaction.doc}}</td>
+    <td> {{transaction.cost}}</td>
+    <td> {{transaction.quantity}}</td>
+  </tr>
+  </tbody>
+</table>
+
