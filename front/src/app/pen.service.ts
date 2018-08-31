@@ -15,7 +15,7 @@ const httpOptions = {
 export class PenService {
 
   // private pensUrl = 'http://localhost:3000';  // URL to web api
-  private pensUrl = '';
+  private pensUrl = 'https://test-store1.herokuapp.com';
 
   constructor(
     private http: HttpClient,
