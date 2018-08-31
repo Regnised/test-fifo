@@ -21,7 +21,7 @@ app.get('/*', (req, res, next) => {
     if (req.originalUrl.match(/\/docs/g) || req.originalUrl.match(/\/api/g) || req.originalUrl.match(/\/api-docs/g)) {
         next();
     } else {
-        res.sendFile(path.join(__dirname + '/dist/index.html'));
+        res.sendFile(path.join(__dirname + '/front/dist/index.html'));
     }
 });
 app.use(compression());
