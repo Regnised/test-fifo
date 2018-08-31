@@ -13,11 +13,11 @@ export class DashboardComponent implements OnInit {
   constructor(private penService: PenService) { }
 
   ngOnInit() {
-    this.getHeroes();
+    // this.getHeroes();
   }
 
-  getHeroes(): void {
-    this.penService.getPens()
-      .subscribe(pens => pens);
-  }
+  // getHeroes(): void {
+  //   this.penService.getPens()
+  //     .subscribe(pens => pens);
+  // }
 }
