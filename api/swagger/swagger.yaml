@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
   version: "0.0.2"
-  title: VirtuProfs
+  title: BallpenStore
 basePath: /api
 # host: localhost:3000
 schemes:
