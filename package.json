@@ -1,0 +1,33 @@
+{
+  "name": "test-task",
+  "version": "0.0.1",
+  "scripts": {
+    "start-server": "heroku local",
+    "test": "ng test",
+    "swagger-edit": "swagger project edit",
+    "swagger-test": "swagger project test"
+  },
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bootstrap": "^3.3.7",
+    "compression": "^1.7.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.6",
+    "pug": "^2.0.3",
+    "swagger": "^0.7.5",
+    "swagger-express-mw": "^0.7.0",
+    "swagger-tools": "^0.10.4"
+  },
+  "devDependencies": {
+    "z-schema": "^3.12.0",
+    "request": "^2.58.0",
+    "chai": "^3.0.0",
+    "mocha": "^2.2.5",
+    "dotenv": "^1.2.0"
+  },
+  "main": "server.js",
+  "engines": {
+    "node": "8.11.3"
+  }
+}

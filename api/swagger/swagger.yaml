@@ -1,0 +1,108 @@
+swagger: "2.0"
+info:
+  version: "0.0.2"
+  title: VirtuProfs
+basePath: /api
+host: localhost:3000
+schemes:
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /swagger:
+    x-swagger-pipe: swagger_raw
+  /buy:
+    x-swagger-router-controller: GoodsController
+    post:
+      operationId: buyGoods
+      summary: Buy bullpen
+      tags:
+        - Goods
+      parameters:
+        - in: body
+          name: pen
+          description: Bullpen set
+          schema:
+            type: object
+            required:
+              - cost
+              - quantity
+            properties:
+              cost:
+                type: number
+                minimum: 0
+                maximum: 9999999
+              quantity:
+                type: number
+                minimum: 0
+                maximum: 9999999
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Response"
+  /sell:
+    x-swagger-router-controller: GoodsController
+    post:
+      operationId: sellGoods
+      summary: Sell bullpen
+      tags:
+        - Goods
+      parameters:
+        - in: body
+          name: pen
+          description: Bullpen set
+          schema:
+            type: object
+            required:
+              - cost
+              - quantity
+            properties:
+              cost:
+                type: number
+                minimum: 0
+                maximum: 9999999
+              quantity:
+                type: number
+                minimum: 0
+                maximum: 9999999
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Response"
+  /transactions:
+    x-swagger-router-controller: TransactionsController
+    get:
+      operationId: getTransactions
+      summary: Get all transactions (logs)
+      tags:
+        - transactions
+      responses:
+        "200":
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Response"
+definitions:
+  Response:
+    type: object
+    properties:
+      success:
+        type: boolean
+      errorCode:
+        type: string
+      errorStack:
+        type: array
+        items:
+            type: object
+      message:
+        type: string
+      data:
+        type: object
+    required:
+      - success
