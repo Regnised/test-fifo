@@ -15,7 +15,7 @@ const DB = require('./config/database.config'),
     };
 
 app.use(bodyParser.json({limit: 10 * 1024 * 1024}));
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/front/dist'));
 
 app.get('/*', (req, res, next) => {
     if (req.originalUrl.match(/\/docs/g) || req.originalUrl.match(/\/api/g) || req.originalUrl.match(/\/api-docs/g)) {
