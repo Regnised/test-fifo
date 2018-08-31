@@ -4,7 +4,8 @@ const SwaggerExpress = require('swagger-express-mw'),
     SwaggerUi = require('swagger-tools/middleware/swagger-ui');
 
 const bodyParser = require('body-parser'),
-    compression = require('compression');
+    compression = require('compression'),
+    path = require('path');
 
 const DB = require('./config/database.config'),
     express = require('express'),
@@ -14,15 +15,15 @@ const DB = require('./config/database.config'),
     };
 
 app.use(bodyParser.json({limit: 10 * 1024 * 1024}));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/dist'));
 
-// app.get('/*', (req, res, next) => {
-    // if (req.originalUrl.match(/\/docs/g) || req.originalUrl.match(/\/api/g) || req.originalUrl.match(/\/api-docs/g)) {
-    //     next();
-    // } else {
-    //     res.sendFile(path.join(__dirname + '/dist/virtuprofs/index.html'));
-    // }
-// });
+app.get('/*', (req, res, next) => {
+    if (req.originalUrl.match(/\/docs/g) || req.originalUrl.match(/\/api/g) || req.originalUrl.match(/\/api-docs/g)) {
+        next();
+    } else {
+        res.sendFile(path.join(__dirname + '/dist/index.html'));
+    }
+});
 app.use(compression());
 
 SwaggerExpress.create(appConfig, (err, swaggerExpress) => {
